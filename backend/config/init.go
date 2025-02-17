@@ -67,10 +67,10 @@ func GetDefaultConfig() *ALSConfig {
 func Load() {
 	// default config
 	Config = GetDefaultConfig()
-	LoadFromEnv()
+	LoadIPFromEnv()
 }
 
-func LoadFromEnv() {
+func LoadIPFromEnv() {
 	domain := os.Getenv("LAZYCAT_APP_DOMAIN")
 	if domain != "" {
 		Config.PublicIPv4 = domain
