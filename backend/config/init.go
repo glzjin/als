@@ -70,6 +70,14 @@ func Load() {
 	LoadFromEnv()
 }
 
+func LoadFromEnv() {
+	domain := os.Getenv("LAZYCAT_APP_DOMAIN")
+	if domain != "" {
+		Config.PublicIPv4 = domain
+		Config.PublicIPv6 = domain
+	}
+}
+
 func LoadWebConfig() {
 	Load()
 	LoadSponsorMessage()
@@ -97,7 +105,7 @@ func LoadSponsorMessage() {
 		return
 	}
 
-	log.Default().Println("Loading sponser message...")
+	log.Default().Println("Loading sponsor message...")
 
 	if _, err := os.Stat(Config.SponsorMessage); err == nil {
 		content, err := os.ReadFile(Config.SponsorMessage)
@@ -111,7 +119,7 @@ func LoadSponsorMessage() {
 	if err == nil {
 		content, err := io.ReadAll(resp.Body)
 		if err == nil {
-			log.Default().Println("Loaded sponser message from url.")
+			log.Default().Println("Loaded sponsor message from url.")
 			Config.SponsorMessage = string(content)
 			return
 		}
