@@ -1,7 +1,7 @@
 FROM node:lts-alpine as builderNodeJSCache
 ADD ui/package.json /app/package.json
 WORKDIR /app
-RUN npm i
+RUN npm install apexcharts@latest && npm install
 
 FROM node:lts-alpine as builderNodeJS
 ADD ui /app
